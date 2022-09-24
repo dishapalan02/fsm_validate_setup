@@ -1,0 +1,73 @@
+{
+  "_version": "1.8.0",
+  "sap.app": {
+    "id": "company",
+    "type": "application",
+    "title": "Company Setup",
+    "description": "ValidateFSMSetup",
+    "dataSources": {
+      "company": {
+        "uri": "../../../srv/mySimpleService/company/",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "4.0"
+        }
+      }
+    }
+  },
+  "sap.ui5": {
+    "rootView": {
+      "viewName": "ValidateFSMSetup.SmartTable",
+      "type": "XML",
+      "async": true
+    },
+    "dependencies": {
+      "libs": {
+        "sap.fe.core": {},
+        "sap.m": {},
+        "sap.ui.comp": {}
+      }
+    },
+    "config": {
+      "sample": {
+        "files": [
+          "SmartTable.view.xml",
+          "SmartTable.controller.js",
+          "manifest.json"
+        ]
+      }
+    },
+    "models": {
+      "": {
+        "dataSource": "company",
+        "settings": {
+          "synchronizationMode": "None",
+          "operationMode": "Server",
+          "autoExpandSelect": false,
+          "earlyRequests": false,
+          "groupProperties": {
+            "default": {
+              "submit": "Auto"
+            }
+          }
+        }
+      }
+    },
+    "routing": {
+      "routes": [
+        {
+          "pattern": ":?query:",
+          "name": "Company",
+          "target": "Company"
+        }
+      ],
+      "targets": {
+        "Company": {
+          "viewName": "SmartTable",
+          "viewId": "ValidateFSMSetup",
+          "viewLevel": 1
+        }
+      }
+    }
+  }
+}

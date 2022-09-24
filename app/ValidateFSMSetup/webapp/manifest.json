@@ -1,0 +1,62 @@
+{
+  "_version": "1.8.0",
+  "sap.app": {
+    "id": "company",
+    "type": "application",
+    "title": "Company Setup",
+    "description": "ValidateFSMSetup",
+    "dataSources": {
+      "company": {
+        "uri": "/company/",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "4.0"
+        }
+      }
+    }
+  },
+  "sap.ui5": {
+    "dependencies": {
+      "libs": {
+        "sap.fe.core": {}
+      }
+    },
+    "models": {
+      "": {
+        "dataSource": "company",
+        "settings": {
+          "synchronizationMode": "None",
+          "operationMode": "Server",
+          "autoExpandSelect": false,
+          "earlyRequests": false,
+          "groupProperties": {
+            "default": {
+              "submit": "Auto"
+            }
+          }
+        }
+      }
+    },
+    "routing": {
+      "routes": [
+        {
+          "pattern": ":?query:",
+          "name": "Company",
+          "target": "Company"
+        }
+      ],
+      "targets": {
+        "Company": {
+          "type": "Component",
+          "id": "ValidateFSMSetup",
+          "name": "sap.fe.templates.ListReport",
+          "options": {
+            "settings": {
+              "entitySet": "Company"
+            }
+          }
+        }
+      }
+    }
+  }
+}
